@@ -1,0 +1,61 @@
+import mysql.connector
+# import mysql.connector
+#create user 'user'@'%' identified by 'password'
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="abc",
+  password="password"
+)
+
+cur=mydb.cursor()
+
+cur.execute('select * from Student_data.Personal_Info')
+for i in cur:
+    print(i);
+
+cur.execute("update Student_data.Personal_Info set NAME='MEGHA LOHACH' WHERE ROLL_NO=12346")
+
+mydb.commit()
+
+cur.execute("delete from Student_data.Personal_Info where ROLL_NO=12345")
+mydb.commit()
+
+
+************************************************
+
+import mysql.connector
+# import mysql.connector
+#create user 'user'@'%' identified by 'password'
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="abc",
+  password="password"
+)
+
+cur=mydb.cursor()
+
+#cur.execute('create database Student_data')
+
+cur.execute('use Student_data')
+
+#cur.execute('create table Personal_Info (NAME VARCHAR(40),EMAIL_ID VARCHAR(40), ROLL_NO INT)')
+
+cur.execute("""insert into Personal_Info values('Swasti','swasti@gamil.com',12345),
+('MEGHA','MEGHA@gamil.com',12345),
+('SONALI','SONALI@gamil.com',12346),
+('DEEPA','DEEPA@gamil.com',12347),
+('SHIVI','SHIVI@gamil.com',12348),
+('GOURA','GOURA@gamil.com',12349),
+('NANDITA','NANDITA@gamil.com',92345),
+('SRISHTI','SRISHTI@gamil.com',17345),
+('PREETI','PREETI@gamil.com',12343),
+('KANIKA','KANIKA@gamil.com',12355)""");
+
+cur.execute('select * from Student_data.Personal_Info')
+
+for i in cur:
+    print(i)
+
+mydb.commit()
+
+
